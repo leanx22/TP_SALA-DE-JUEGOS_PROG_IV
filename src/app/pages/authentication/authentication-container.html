@@ -1,0 +1,16 @@
+<div class="container-fluid full-height">
+  <div class="row full-height">
+    <div class="col-md-8 d-none d-md-flex left">
+    </div>
+    <div class="col-12 col-md-4 d-flex flex-column right">
+      <div class="w-100 d-flex justify-content-end mt-2">
+        <label class="text-primary fw-semibold me-2" for="backBtn">Volver</label>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-theme="dark" id="backBtn" (click)="toHome()"></button>
+      </div>
+      
+      <div class="flex-grow-1">
+        <router-outlet class="w-100"/>
+      </div>
+    </div>
+  </div>
+</div>
