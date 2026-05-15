@@ -11,7 +11,7 @@ export class GithubService {
   private readonly apiUrl = 'https://api.github.com/users';
 
   getUserData(username: string){
-    this.http.get<GithubUserData>(this.apiUrl+'/'+username);
+    return this.http.get<GithubUserData>(this.apiUrl+'/'+username);
   }
 
 }
