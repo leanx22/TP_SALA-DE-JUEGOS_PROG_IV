@@ -3,7 +3,6 @@
     class="navbar navbar-expand-lg navbar-dark navbar-glass px-3 shadow w-100"
     [ngClass]="{ 'position-absolute': isAbsolute() }"
   >
-    <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
       <img
         src="favicon.svg"
@@ -23,12 +22,10 @@
       </span>
     </a>
 
-    <!-- Toggler mobile -->
     <button class="navbar-toggler" type="button" (click)="isMenuOpen = !isMenuOpen">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Links + acciones -->
     <div [ngbCollapse]="!isMenuOpen" class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -63,7 +60,6 @@
         </li>
       </ul>
 
-      <!-- Sesión -->
       <div class="d-flex align-items-center">
         @if (!getCurrentUser()) {
           <button class="btn btn-primary" routerLink="/session/login">Ingresar</button>
