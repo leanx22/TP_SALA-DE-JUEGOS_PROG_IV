@@ -1,0 +1,24 @@
+<div class="spinner-overlay">
+
+  <!-- Banda negra con bordes degradados -->
+  <div class="spinner-band">
+
+    <!-- Contenido centrado: GIF + barra -->
+    <div class="spinner-content">
+      <img
+        [src]="selectedGif"
+        alt="Cargando..."
+        class="spinner-gif"
+      />
+      <h3>CARGANDO</h3>
+      <ngb-progressbar
+        class="spinner-progress"
+        type="secondary"
+        [striped]="true"
+        [animated]="true"
+        [value]="100"
+      />
+    </div>
+
+  </div>
+</div>

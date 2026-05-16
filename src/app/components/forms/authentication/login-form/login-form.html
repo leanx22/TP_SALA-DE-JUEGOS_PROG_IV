@@ -1,3 +1,7 @@
+@if(isLoading()){
+  <app-fs-spinner/>
+}
+
 <div class="contenedor-formu d-flex flex-column justify-content-center p-4">
   
   <form class="p-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -6,6 +10,15 @@
     <div class="mb-3">
       <label for="emailInput" class="text-white fw-semibold form-label">Dirección de email</label>
       <input type="email" class="form-control text-spaced" id="emailInput" formControlName="email">
+      
+      <div class="smallError">
+        <small class="text-danger fw-semibold">
+          @if(getErrorMessage('email')){
+            {{getErrorMessage('email')}}
+          }
+        </small>
+      </div>
+      
     </div>
     
     <div class="mb-3">
@@ -27,6 +40,15 @@
           }
         </button>
       </div>
+
+       <div class="smallError">
+        <small class="text-danger fw-semibold">
+          @if(getErrorMessage('password')){
+            {{getErrorMessage('password')}}
+          }
+        </small>
+      </div>
+
       <div class="btn-submit-container">
           <button class="btn btn-primary w-100 mt-2">Ingresar</button>
       </div>
