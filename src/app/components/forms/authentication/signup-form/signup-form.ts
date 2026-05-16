@@ -40,6 +40,8 @@ export class SignupForm {
 
     this.isLoading.set(true);
 
+    await this.delay(1200);
+
     const raw = this.registerForm.getRawValue();
     let ageToInt;
     try{
@@ -101,5 +103,6 @@ export class SignupForm {
     return  'Campo inválido.';
   }
 
+  delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 }
