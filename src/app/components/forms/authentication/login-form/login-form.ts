@@ -47,6 +47,8 @@ export class LoginForm {
     
     this.isLoading.set(true);
     
+    await this.delay(1200);
+    
     const raw = this.loginForm.getRawValue();
     const payload: LoginPayload = {
       email: raw.email!,
@@ -85,5 +87,6 @@ export class LoginForm {
     return  'Campo inválido.';
   }
 
+  delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 }
