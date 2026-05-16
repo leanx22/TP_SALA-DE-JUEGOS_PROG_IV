@@ -1,49 +1,83 @@
-@if(!shouldHide()){
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-glass px-3 shadow w-100"
-    [ngClass]="{ 'position-absolute': isAbsolute() }">
-        <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
-        <img src="favicon.svg" alt="Logo" width="32" height="32" (mouseleave)="collapse.toggle()" (mouseover)="collapse.toggle()"/>
-        <span #collapse="ngbCollapse" [(ngbCollapse)]="isLogoCollapsed" [horizontal]="true" class="fw-bold">Sala de Juegos</span>
-        </a>
+@if (!shouldHide()) {
+  <nav
+    class="navbar navbar-expand-lg navbar-dark navbar-glass px-3 shadow w-100"
+    [ngClass]="{ 'position-absolute': isAbsolute() }"
+  >
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <img
+        src="favIcon/iconoColor.svg"
+        alt="Logo"
+        width="32"
+        height="32"
+        (mouseover)="collapse.toggle()"
+        (mouseleave)="collapse.toggle()"
+      />
+      <span
+        #collapse="ngbCollapse"
+        [(ngbCollapse)]="isLogoCollapsed"
+        [horizontal]="true"
+        class="fw-bold"
+      >
+        Sala de Juegos
+      </span>
+    </a>
 
-        <button class="navbar-toggler" type="button" (click)="isMenuOpen = !isMenuOpen">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Toggler mobile -->
+    <button class="navbar-toggler" type="button" (click)="isMenuOpen = !isMenuOpen">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div [ngbCollapse]="!isMenuOpen" class="collapse navbar-collapse">
+    <!-- Links + acciones -->
+    <div [ngbCollapse]="!isMenuOpen" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/juegos"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Juegos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/about"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Sobre mí
+          </a>
+        </li>
+      </ul>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a 
-                    class="nav-link" 
-                    routerLink="/" 
-                    routerLinkActive="active" 
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    >Inicio</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    routerLink="/juegos" 
-                    routerLinkActive="active" 
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    >Juegos</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" 
-                    routerLink="/about" 
-                    routerLinkActive="active" 
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    >Sobre mí</a>
-                </li>
-            </ul>
-
-            <div class="d-flex">
-                <button class="btn btn-primary" routerLink="/session/login">
-                    Autenticarse
-                </button>
+      <!-- Sesión -->
+      <div class="d-flex align-items-center">
+        @if (!getCurrentUser()) {
+          <button class="btn btn-primary" routerLink="/session/login">Ingresar</button>
+        } @else {
+          <div ngbDropdown>
+            <button type="button" class="btn btn-outline-primary" ngbDropdownToggle>
+              {{ getCurrentUser()!.user_metadata['name'] ?? 'Cargando...' }}
+            </button>
+            <div ngbDropdownMenu>
+              <button ngbDropdownItem class="text-danger" (click)="logOut()">Cerrar sesión</button>
             </div>
-        </div>
-    </nav>
+          </div>
+        }
+      </div>
+    </div>
+  </nav>
 }

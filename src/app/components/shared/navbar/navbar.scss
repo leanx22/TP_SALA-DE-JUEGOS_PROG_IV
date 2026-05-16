@@ -1,0 +1,10 @@
+// navbar.scss
+:host {
+  display: block;
+}
+
+// Alinea el menú del dropdown al borde derecho del botón
+::ng-deep .dropdown-menu {
+  left: auto !important;
+  right: 0 !important;
+}
