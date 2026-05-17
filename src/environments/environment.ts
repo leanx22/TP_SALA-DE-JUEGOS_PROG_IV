@@ -1,7 +1,7 @@
-import { EnvironmentModel } from "./environment.model";
+import { EnvironmentModel } from './environment.model';
 
 export const environment: EnvironmentModel = {
-    production: true,
-    supabase_url: '',
-    supabase_publishable: ''
+  production: true,
+  supabase_url: 'https://kfnaykoppiyffbrufzzl.supabase.co',
+  supabase_publishable: 'sb_publishable_a6uv4ngQeCiqOdPB5vcZCQ__sP8lhuK',
 };
