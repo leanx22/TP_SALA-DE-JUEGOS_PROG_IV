@@ -1,0 +1,43 @@
+
+.hero {
+  position: relative;
+  min-height: 10svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--clr-neutral-a50);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(23, 41, 33, 0.75) 50%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+    z-index: 0;
+  }
+
+  // ── Grilla decorativa de fondo ───────────────────────────
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(78, 255, 187, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 255, 187, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+.personal-card{
+    z-index: 1;
+}
