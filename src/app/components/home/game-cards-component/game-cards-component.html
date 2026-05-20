@@ -1,0 +1,28 @@
+<article class="game-card" role="listitem">
+  <a [routerLink]="game().url" class="game-card__link" [attr.aria-label]="'Jugar ' + game().name">
+    <!-- Imagen / placeholder -->
+    <div class="game-card__image-wrap">
+      @if (game().image) {
+        <img [src]="game().image" [alt]="game().name" class="game-card__image" />
+      } @else {
+        <div class="game-card__placeholder" aria-hidden="true">
+          <span class="game-card__placeholder-icon">◈</span>
+        </div>
+      }
+      <div class="game-card__image-overlay" aria-hidden="true"></div>
+    </div>
+
+    <!-- Cuerpo -->
+    <div class="game-card__body">
+      <div class="game-card__top-line" aria-hidden="true"></div>
+
+      <h3 class="game-card__title">{{ game().name }}</h3>
+      <p class="game-card__desc">{{ game().description }}</p>
+
+      <div class="game-card__footer">
+        <span class="game-card__cta">JUGAR</span>
+        <span class="game-card__arrow" aria-hidden="true">→</span>
+      </div>
+    </div>
+  </a>
+</article>

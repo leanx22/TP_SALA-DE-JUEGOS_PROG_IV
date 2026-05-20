@@ -1,0 +1,184 @@
+$font-display: 'Orbitron', monospace;
+$font-body: 'Rajdhani', sans-serif;
+
+.game-card {
+  position: relative;
+  border: 1px solid rgba(78, 255, 187, 0.15);
+  background-color: rgba(0, 0, 0, 0.45);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background: rgba(78, 255, 187, 0.2);
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+    transition: background 0.3s ease;
+    z-index: 1;
+  }
+
+  &:hover {
+    border-color: rgba(78, 255, 187, 0.6);
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 24px rgba(78, 255, 187, 0.12),
+      0 8px 32px rgba(0, 0, 0, 0.5);
+
+    &::before {
+      background: rgba(78, 255, 187, 0.6);
+    }
+
+    .game-card__image-overlay {
+      opacity: 0;
+    }
+
+    .game-card__placeholder-icon {
+      transform: scale(1.15) rotate(15deg);
+      color: var(--clr-primary-a0);
+    }
+
+    .game-card__cta {
+      letter-spacing: 0.25em;
+    }
+
+    .game-card__arrow {
+      transform: translateX(5px);
+    }
+
+    .game-card__top-line {
+      width: 100%;
+    }
+  }
+}
+
+.game-card__link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  height: 100%;
+  color: inherit;
+}
+
+// ── Imagen ──────────────────────────────────────────────────────────────────
+.game-card__image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.game-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+
+  .game-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.game-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+// ── Placeholder (sin imagen) ─────────────────────────────────────────────────
+.game-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, rgba(78, 255, 187, 0.04) 0%, transparent 60%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(78, 255, 187, 0.03) 8px,
+      rgba(78, 255, 187, 0.03) 9px
+    );
+}
+
+.game-card__placeholder-icon {
+  font-size: 2.5rem;
+  color: var(--clr-primary-a30, rgba(78, 255, 187, 0.3));
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: block;
+}
+
+// ── Cuerpo ───────────────────────────────────────────────────────────────────
+.game-card__body {
+  padding: 1.1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.game-card__top-line {
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--clr-primary-a0, #4effbb), transparent);
+  transition: width 0.4s ease;
+  margin-bottom: 0.25rem;
+}
+
+.game-card__title {
+  font-family: $font-display;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-neutral-a0, #fff);
+  margin: 0;
+}
+
+.game-card__desc {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--clr-neutral-a20, rgba(255, 255, 255, 0.6));
+  margin: 0;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.game-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(78, 255, 187, 0.1);
+}
+
+.game-card__cta {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--clr-primary-a0, #4effbb);
+  transition: letter-spacing 0.3s ease;
+}
+
+.game-card__arrow {
+  font-size: 1rem;
+  color: var(--clr-primary-a0, #4effbb);
+  transition: transform 0.3s ease;
+  display: block;
+}

@@ -1,11 +1,10 @@
 # Sala de juegos
 
 ## Descripción
+
 'Sala de juegos' es una aplicación web desarrollada como trabajo práctico para la materia Programación IV.
 
 El proyecto consiste en una sala de juegos desarrollada con Angular, donde los usuarios pueden registrarse, iniciar sesión y acceder a distintos juegos. El juego personalizado está inspirado en la mecánica de la ruleta rusa, incorporando decisiones estratégicas, administración de riesgo y sistema de turnos.
-
-
 
 ## Juego personalizado
 
@@ -15,42 +14,47 @@ El jugador se enfrenta a una inteligencia artificial utilizando un arma con bala
 
 La propuesta busca combinar azar y estrategia mediante una mecánica simple e intuitiva.
 
-
 ## Tecnologías utilizadas
 
 ### Frontend
+
 - Angular 21
 - TypeScript
 - NgBootstrap
 - SCSS
 
 ### Backend y persistencia
+
 - Supabase
   - Autenticación
   - Base de datos
   - Persistencia de usuarios
 
 ### Deploy
-- Vercel
 
+- Vercel
 
 ## Funcionalidades implementadas - Sprint 1
 
 ### Estructura inicial del proyecto
+
 - Creación y configuración del proyecto Angular.
 - Organización base de componentes principales y sus rutas.
 - Configuración de estilos globales.
 
 ### Navegación
+
 - Implementación de navegación libre entre componentes utilizando Angular Router.
 
 ### Componentes desarrollados
+
 - Home / Bienvenida
 - Login
 - Registro
 - Quién Soy
 
 ### Página "Quién Soy"
+
 - Obtención de datos desde la API pública de GitHub.
 - Visualización de:
   - Nombre de usuario
@@ -59,13 +63,31 @@ La propuesta busca combinar azar y estrategia mediante una mecánica simple e in
 - Explicación del juego personalizado y sus reglas básicas.
 
 ### Diseño y experiencia de usuario
+
 - Integración de NgBootstrap para componentes visuales.
 - Diseño uniforme entre pantallas.
 - Implementación de favicon personalizado.
 
 ### Deploy
+
 - Publicación de la aplicación en Vercel.
 
+## Funcionalidades implementadas - Sprint 2
+
+### Funcionalidades implementadas
+
+- Login de usuarios haciendo uso de supabase.
+- Posibilidad de inicio de sesión rápido mediante un elemento **select**
+- Registro de usuarios con información personalizada con supabase.
+- Manejo de errores y pantallas de carga.
+- Navbar dinámica dependiendo del estado de la sesión.
+- Posibilidad de cerrar sesión.
+- Home no muestra la lista de juegos hasta que el usuario inicie sesión.
+
+### Guards
+
+- Guard público para proteger rutas sólo para usuarios no autenticados.
+- Guard privado para proteger rutas sólo para usuarios autenticados.
 
 ## Instalación y ejecución local
 
@@ -95,15 +117,13 @@ http://localhost:4200
 
 ## Estado actual del proyecto
 
-Actualmente el proyecto corresponde al Sprint 1 del trabajo práctico. Las próximas etapas incluirán:
+Actualmente el proyecto corresponde al Sprint 2 del trabajo práctico. Las próximas etapas incluirán:
 
-- Autenticación completa con Supabase
 - Implementación de juegos
 - Persistencia de resultados
 - Chat en tiempo real
 - Rankings y estadísticas
 - Guards y protección de rutas
-
 
 ## Autor
 

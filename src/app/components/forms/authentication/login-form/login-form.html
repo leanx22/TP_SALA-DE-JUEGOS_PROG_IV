@@ -1,3 +1,7 @@
+@if(isLoading()){
+  <app-fs-spinner/>
+}
+
 <div class="contenedor-formu d-flex flex-column justify-content-center p-4">
   
   <form class="p-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -6,6 +10,15 @@
     <div class="mb-3">
       <label for="emailInput" class="text-white fw-semibold form-label">Dirección de email</label>
       <input type="email" class="form-control text-spaced" id="emailInput" formControlName="email">
+      
+      <div class="smallError">
+        <small class="text-danger fw-semibold">
+          @if(getErrorMessage('email')){
+            {{getErrorMessage('email')}}
+          }
+        </small>
+      </div>
+      
     </div>
     
     <div class="mb-3">
@@ -27,11 +40,40 @@
           }
         </button>
       </div>
+
+       <div class="smallError">
+        <small class="text-danger fw-semibold">
+          @if(getErrorMessage('password')){
+            {{getErrorMessage('password')}}
+          }
+        </small>
+        </div>
+
       <div class="btn-submit-container">
           <button class="btn btn-primary w-100 mt-2">Ingresar</button>
       </div>
     </div>
   </form>
+  
+  <div class="mt-2">
+    <label class="text-primary fw-semibold">Ingresos de desarrollo</label>  
+    <select class="form-select" (change)="onTestAccountSelected($event)">
+      <option selected disabled>Ver accesos rápidos</option>
+        @for(testUser of testUsers; track testUser){
+          <option>{{testUser.displayName}}</option>  
+        }
+    </select>
+  </div>
+  
+  <div class="alert-container">
+    @if(errorMessage()){
+      <div class="alert alert-danger mt-4" role="alert">
+        {{errorMessage()}}
+      </div>
+    }
+  </div>
+
+  
   <hr>
   <small class="text-center text-white fw-semibold">¿Todavía no estás registrado?</small>
   <div class="p-4 d-flex justify-content-center">

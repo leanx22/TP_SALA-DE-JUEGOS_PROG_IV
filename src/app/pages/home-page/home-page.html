@@ -22,29 +22,43 @@
 
 <main class="games-section" id="juegos">
   <div class="container">
+    @if (currentUser()) {
+      <div class="games-section__header">
+        <h2 class="games-section__title">Juegos disponibles</h2>
+        <p class="games-section__desc">Seleccioná un juego para comenzar</p>
+      </div>
 
-    <div class="games-section__header">
-      <h2 class="games-section__title">Juegos disponibles</h2>
-      <p class="games-section__desc">Seleccioná un juego para comenzar</p>
-    </div>
+      <div class="games-grid" role="list">
+        @for (game of gameList; track game.url) {
+          <app-game-cards-component [game]="game" />
+        }
+      </div>
+    } @else {
+      <div class="games-section__header">
+        <h2 class="games-section__title">Juegos disponibles</h2>
+      </div>
 
-    <!-- Cards de juegos los tengo que poner aca -->
-    <div class="games-grid" role="list">
-
-    </div>
-
-    <!-- Placeholder hasta que haga las tarjetas para mostrar los jueguitos -->
-    <div class="games-empty">
-      <p class="games-empty__text">Para el sprint 3 y 4</p>
-    </div>
-
+      <div class="games-empty">
+        <h2 class="games-section__title">SÓLO PARA USUARIOS REGISTRADOS</h2>
+        <button
+          class="btn btn-primary"
+          routerLink="/session/login"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Ingresar y comenzar a jugar
+        </button>
+      </div>
+    }
+    <footer class="site-footer">
+      <div class="container">
+        <p class="site-footer__text">
+          Hecho por
+          <span class="site-footer__author"
+            ><a target="_blank" href="https://github.com/leanx22">Leandro Guia</a></span
+          >
+        </p>
+      </div>
+    </footer>
   </div>
 </main>
-
-<footer class="site-footer">
-  <div class="container">
-    <p class="site-footer__text">
-      Hecho por <span class="site-footer__author"><a target="_blank" href="https://github.com/leanx22">Leandro Guia</a></span>
-    </p>
-  </div>
-</footer>
