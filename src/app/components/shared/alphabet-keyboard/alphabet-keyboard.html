@@ -1,0 +1,10 @@
+<div class="keyboard-grid">
+  @for (letter of alphabet; track letter) {
+    <button
+      class="keyboard-btn"
+      [disabled]="usedLetters().includes(letter) || disabled()"
+      (click)="handleClick(letter)">
+      {{ letter }}
+    </button>
+  }
+</div>

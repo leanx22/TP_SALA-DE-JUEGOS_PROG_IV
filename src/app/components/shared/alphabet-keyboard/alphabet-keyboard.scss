@@ -1,0 +1,35 @@
+.keyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 8px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.keyboard-btn {
+  padding: 12px 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 2px solid var(--clr-primary-a0);
+  border-radius: 8px;
+  background-color: var(--clr-accent-a0);
+  color: var(--clr-primary-a0);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover:not(:disabled) {
+    background-color: black;
+    color: var(--clr-accent-a0);
+    border-color: var(--clr-accent-a0);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    background-color: var(--clr-accent-a20);
+    color: #a0a0a0;
+    border-color: var(--clr-primary-a20);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}

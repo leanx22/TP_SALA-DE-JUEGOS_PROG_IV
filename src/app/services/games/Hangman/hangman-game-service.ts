@@ -10,14 +10,22 @@ export class HangmanGameService {
   private hint = signal<string | null>(null);
   private usedLetters = signal<string[]>([]);
 
+  private startTime: number | null = null;
+  public readonly maxErrors = 6;
+
   public readonly display = computed<string[]>(() => {
     const exploded = this.explodedWord();
     const usedLetters = this.usedLetters();
     let display: string[] = [];
 
-    exploded.map((letter) => {
-      if (usedLetters.includes(letter)) display.push(letter);
-      display.push('_');
+    if (exploded.length === 0) return [];
+
+    exploded.forEach((letter) => {
+      if (usedLetters.includes(letter)) {
+        display.push(letter);
+      } else {
+        display.push('_');
+      }
     });
 
     return display;
@@ -29,18 +37,37 @@ export class HangmanGameService {
     return currentWord.split('');
   });
 
+  public readonly incorrectLettersCount = computed<number>(() => {
+    const exploded = this.explodedWord();
+    const used = this.usedLetters();
+    return used.filter(letter => !exploded.includes(letter)).length;
+  });
+
+  public readonly correctLettersCount = computed<number>(() => {
+    const exploded = this.explodedWord();
+    const used = this.usedLetters();
+    return used.filter(letter => exploded.includes(letter)).length;
+  });
+
   public currentWord = this.word.asReadonly();
   public currentHint = this.hint.asReadonly();
   public currentUsedLetters = this.usedLetters.asReadonly();
 
-  private generateRandomWord() {
+  public startGame() {
     const randomIndex = Math.floor(Math.random() * this.wordList.length);
     const selectedItem = this.wordList[randomIndex];
 
-    this.word.set(selectedItem.word);
+    this.word.set(selectedItem.word.toUpperCase());
     this.hint.set(selectedItem.hint);
+    this.usedLetters.set([]);
+    this.startTime = Date.now();
   }
 
+  public getGameTime(): number {
+    if (!this.startTime) return 0;
+    return Date.now() - this.startTime;
+  }
+  
   /**
    * Busca si la palabra actual contiene la letra especificada por parametro.
    * @param letter Letra a verificar
@@ -53,9 +80,9 @@ export class HangmanGameService {
 
     if (!currentWord || !currentWordExploded) throw new Error('Aún no hay una palabra definida!');
 
-    this.addUsedLetter(letter);
-
     const upperLetter = letter.toUpperCase();
+    this.addUsedLetter(upperLetter);
+
     if (!currentWordExploded.includes(upperLetter)) return { success: false, indexes: null };
 
     let indexes: number[] = [];
