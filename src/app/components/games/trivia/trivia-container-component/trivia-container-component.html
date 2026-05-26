@@ -2,18 +2,17 @@
   
   @if (triviaService.isLoading()) {
     <div class="status-state">
-      <h2 class="font-space">Cargando la trivia...</h2>
-      <div class="spinner"></div>
+      <app-fs-spinner/>
     </div>
   } 
   
   @else if (isGameOver()) {
     <div class="status-state">
-      <h2 class="font-space text-primary">¡Partida Terminada!</h2>
+      <h2 class="font-space text-primary">Fin de la partida</h2>
       <p class="score-display">
         Puntaje Final: <span class="font-mono">{{ score() }}</span>
       </p>
-      <button class="btn-primary font-mono" (click)="startGame()">Jugar de nuevo</button>
+      <button class="btn-primary font-mono" (click)="startGame()">Volver a jugar</button>
     </div>
   } 
   
@@ -21,7 +20,7 @@
     <div class="game-board">
       <header class="game-header font-mono">
         <span class="category badge">{{ currentQuestion().category }}</span>
-        <span class="score text-primary">Score: {{ score() }}</span>
+        <span class="score text-primary">Puntaje: {{ score() }}</span>
       </header>
 
       <main class="question-card">

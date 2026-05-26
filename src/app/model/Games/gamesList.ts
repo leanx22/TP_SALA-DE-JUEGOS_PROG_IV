@@ -25,7 +25,7 @@ export const GameList: GameInfo[] = [
     name: 'Preguntados',
     description: 'Cuánto sabés?',
     image: 'assets/Games/heroImages/preguntados_low.jpg',
-    url: '/games/quizz',
+    url: '/games/trivia',
     needLogin: true,
   },
   {
