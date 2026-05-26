@@ -72,22 +72,12 @@ La propuesta busca combinar azar y estrategia mediante una mecánica simple e in
 
 - Publicación de la aplicación en Vercel.
 
-## Funcionalidades implementadas - Sprint 2
+## Funcionalidades implementadas - Sprint 3
 
 ### Funcionalidades implementadas
-
-- Login de usuarios haciendo uso de supabase.
-- Posibilidad de inicio de sesión rápido mediante un elemento **select**
-- Registro de usuarios con información personalizada con supabase.
-- Manejo de errores y pantallas de carga.
-- Navbar dinámica dependiendo del estado de la sesión.
-- Posibilidad de cerrar sesión.
-- Home no muestra la lista de juegos hasta que el usuario inicie sesión.
-
-### Guards
-
-- Guard público para proteger rutas sólo para usuarios no autenticados.
-- Guard privado para proteger rutas sólo para usuarios autenticados.
+- Juego del ahorcado.
+- Juego de mayor o menor.
+- Chat general entre usuarios registrados.
 
 ## Instalación y ejecución local
 
@@ -117,13 +107,10 @@ http://localhost:4200
 
 ## Estado actual del proyecto
 
-Actualmente el proyecto corresponde al Sprint 2 del trabajo práctico. Las próximas etapas incluirán:
+Actualmente el proyecto corresponde al Sprint 3 del trabajo práctico. Las próximas etapas incluirán:
 
-- Implementación de juegos
-- Persistencia de resultados
-- Chat en tiempo real
-- Rankings y estadísticas
-- Guards y protección de rutas
+- Implementación de aún más juegos.
+- Rankings y estadísticas.
 
 ## Autor
 

@@ -1,0 +1,50 @@
+.playing-card {
+  width: 150px;
+  height: 220px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+  color: #333;
+  margin: 0 auto;
+
+  .card-corner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+
+    .value {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .suit {
+      font-size: 1rem;
+    }
+
+    &.top-left {
+      align-self: flex-start;
+    }
+    
+    &.bottom-right {
+      align-self: flex-end;
+      transform: rotate(180deg);
+    }
+  }
+
+  .card-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    .suit-main {
+      font-size: 3rem;
+    }
+  }
+}

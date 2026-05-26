@@ -1,0 +1,33 @@
+<div class="hangman-game-wrapper">
+  
+  <header class="game-header">
+    <h2>EL AHORCADO</h2>
+    @if (gameService.currentHint()) {
+      <p class="hint">PISTA: {{ gameService.currentHint() }}</p>
+    }
+  </header>
+
+  <app-hangman-display 
+    [displayWord]="gameService.display()"
+    [errors]="gameService.incorrectLettersCount()"
+    [maxErrors]="gameService.maxErrors">
+  </app-hangman-display>
+
+  <app-alphabet-keyboard
+    [disabled]="gameEnded"
+    [usedLetters]="gameService.currentUsedLetters()"
+    (onLetterSelected)="handleLetterClick($event)">
+  </app-alphabet-keyboard>
+
+  @if (gameEnded) {
+    <div class="game-over-overlay">
+      <div class="game-over-modal">
+        <h3>{{ winStatus ? '¡Perfecto!' : '¡Perdiste!' }}</h3>
+        @if (!winStatus) {
+          <p>La palabra era: <strong>{{ gameService.currentWord() }}</strong></p>
+        }
+        <button class="btn btn-primary" (click)="iniciarJuego()">Jugar de Nuevo</button>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,37 @@
+<div class="morl-game-wrapper">
+  
+  <header class="game-header">
+    <h2>MAYOR O MENOR</h2>
+    <p class="score">Puntaje: {{ gameService.score() }}</p>
+    <p class="message">{{ gameService.message() }}</p>
+  </header>
+
+  <app-playing-card-display 
+    [card]="gameService.currentCard()">
+  </app-playing-card-display>
+
+  <div class="game-controls">
+    <button 
+        class="btn btn-primary" 
+        [disabled]="gameService.isGameOver()"
+        (click)="handleGuess('mayor')">
+      ▲ Mayor
+    </button>
+    <button 
+        class="btn btn-primary" 
+        [disabled]="gameService.isGameOver()"
+        (click)="handleGuess('menor')">
+      ▼ Menor
+    </button>
+  </div>
+
+  @if (gameService.isGameOver()) {
+    <div class="game-over-overlay">
+      <div class="game-over-modal">
+        <h3>{{ gameService.message() }}</h3>
+        <p>Puntaje Final: <strong>{{ gameService.score() }}</strong></p>
+        <button class="btn btn-primary" (click)="iniciarJuego()">Jugar de Nuevo</button>
+      </div>
+    </div>
+  }
+</div>

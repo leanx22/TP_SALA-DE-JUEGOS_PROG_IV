@@ -1,0 +1,77 @@
+.morl-game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  position: relative;
+  
+  .game-header {
+    text-align: center;
+    h2 {
+      margin: 0;
+      color: #333;
+    }
+    .score {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .message {
+      font-size: 1rem;
+      color: #555;
+    }
+  }
+
+  .game-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-radius: 8px;
+
+    .game-over-modal {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      color: #333;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+      h3 {
+        margin-top: 0;
+      }
+
+      button {
+        margin-top: 15px;
+      }
+    }
+  }
+}

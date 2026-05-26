@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { guestGuard } from './guards/authentication/guest-guard';
+import { authGuard } from './guards/authentication/auth-guard';
 
 export const routes: Routes = [
   {
@@ -44,4 +45,30 @@ export const routes: Routes = [
     path: 'about',
     loadComponent: () => import('./pages/about-page/about-page').then((m) => m.AboutPage),
   },
+  {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat-page/chat-page').then((m) => m.ChatPage),
+    canActivate: [authGuard]
+  },
+  {
+    path:'games',
+    loadComponent: ()=>import('./pages/games/game-layout/game-layout').then(m=>m.GameLayout),
+    canActivate:[authGuard],
+    canActivateChild:[authGuard],
+    children:[
+      {
+        path:'hangman',
+        loadComponent:()=>import('./components/games/hangman/hangman-container/hangman-container').then(m=>m.HangmanContainerComponent)
+      },
+      {
+        path:'greater-or-less',
+        loadComponent:()=>import('./components/games/more-or-less/morl-container/morl-container').then(m=>m.MorlContainerComponent)
+      },
+      {
+        path: '',
+        redirectTo: '/',
+        pathMatch: 'full',
+      }
+    ]
+  } 
 ];
