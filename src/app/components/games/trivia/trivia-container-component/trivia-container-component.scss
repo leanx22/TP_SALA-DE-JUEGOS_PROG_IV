@@ -1,0 +1,153 @@
+/* trivia-container.scss */
+.trivia-wrapper {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--clr-neutral-a50);
+  border: 1px solid var(--clr-primary-a40);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 25px rgba(99, 78, 255, 0.15); /* Sombra sutil con tu $secondary */
+  color: var(--clr-neutral-a0);
+}
+
+/* Clases de utilidad para tipografías */
+.font-space { font-family: 'Space Grotesk', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.text-primary { color: var(--clr-primary-a0); }
+
+/* Estados de carga y fin de juego */
+.status-state {
+  text-align: center;
+  padding: 3rem 1rem;
+
+  h2 { margin-bottom: 1.5rem; }
+
+  .score-display {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: var(--clr-neutral-a10);
+
+    span {
+      display: block;
+      font-size: 3rem;
+      color: var(--clr-accent-a0);
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+/* Cabecera del juego */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--clr-neutral-a40);
+
+  .badge {
+    background-color: var(--clr-accent-a40);
+    color: var(--clr-accent-a0);
+    padding: 0.35rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .score { font-size: 1.1rem; font-weight: 700; }
+}
+
+/* Tarjeta de pregunta */
+.question-card {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  .progress {
+    color: var(--clr-neutral-a20);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .question-text {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+}
+
+/* Grilla de respuestas */
+.answers-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Botones de respuestas */
+.btn-answer {
+  background-color: var(--clr-neutral-a50);
+  color: var(--clr-neutral-a0);
+  border: 1px solid var(--clr-neutral-a30);
+  padding: 1.25rem;
+  border-radius: 0.375rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: left;
+
+  &:hover:not(:disabled) {
+    background-color: var(--clr-primary-a50);
+    border-color: var(--clr-primary-a0);
+    box-shadow: 0 0 10px rgba(78, 255, 187, 0.2);
+  }
+
+  /* Estados de validación */
+  &.correct {
+    background-color: var(--clr-success-a30) !important;
+    border-color: var(--clr-success-a0) !important;
+    color: var(--clr-success-a0) !important;
+  }
+
+  &.incorrect {
+    background-color: var(--clr-danger-a30) !important;
+    border-color: var(--clr-danger-a0) !important;
+    color: var(--clr-danger-a0) !important;
+  }
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+/* Botón principal */
+.btn-primary {
+  background-color: var(--clr-primary-a0);
+  color: var(--clr-neutral-a50);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover { background-color: var(--clr-primary-a10); }
+}
+
+/* Spinner de carga */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--clr-neutral-a40);
+  border-top: 4px solid var(--clr-primary-a0);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

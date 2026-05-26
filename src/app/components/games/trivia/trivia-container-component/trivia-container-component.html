@@ -1,0 +1,48 @@
+<div class="trivia-wrapper">
+  
+  @if (triviaService.isLoading()) {
+    <div class="status-state">
+      <h2 class="font-space">Cargando la trivia...</h2>
+      <div class="spinner"></div>
+    </div>
+  } 
+  
+  @else if (isGameOver()) {
+    <div class="status-state">
+      <h2 class="font-space text-primary">¡Partida Terminada!</h2>
+      <p class="score-display">
+        Puntaje Final: <span class="font-mono">{{ score() }}</span>
+      </p>
+      <button class="btn-primary font-mono" (click)="startGame()">Jugar de nuevo</button>
+    </div>
+  } 
+  
+  @else if (currentQuestion()) {
+    <div class="game-board">
+      <header class="game-header font-mono">
+        <span class="category badge">{{ currentQuestion().category }}</span>
+        <span class="score text-primary">Score: {{ score() }}</span>
+      </header>
+
+      <main class="question-card">
+        <div class="progress font-mono">
+          Pregunta {{ currentIndex() + 1 }} / {{ triviaService.currentQuestions().length }}
+        </div>
+        
+        <h3 class="question-text font-space" [innerHTML]="currentQuestion().question"></h3>
+      </main>
+
+      <section class="answers-grid">
+        @for (answer of currentQuestion().all_answers; track $index) {
+          <button
+            [class]="getButtonClass(answer)"
+            (click)="selectAnswer(answer)"
+            [disabled]="selectedAnswer() !== null"
+            [innerHTML]="answer">
+          </button>
+        }
+      </section>
+    </div>
+  }
+  
+</div>

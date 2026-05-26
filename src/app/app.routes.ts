@@ -65,6 +65,10 @@ export const routes: Routes = [
         loadComponent:()=>import('./components/games/more-or-less/morl-container/morl-container').then(m=>m.MorlContainerComponent)
       },
       {
+        path:'trivia',
+        loadComponent:()=>import('./components/games/trivia/trivia-container-component/trivia-container-component').then(m=>m.TriviaContainerComponent)
+      },
+      {
         path: '',
         redirectTo: '/',
         pathMatch: 'full',
