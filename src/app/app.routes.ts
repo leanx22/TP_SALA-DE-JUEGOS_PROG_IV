@@ -56,6 +56,10 @@ export const routes: Routes = [
         loadComponent:()=>import('./components/games/hangman/hangman-container/hangman-container').then(m=>m.HangmanContainerComponent)
       },
       {
+        path:'greater-or-less',
+        loadComponent:()=>import('./components/games/more-or-less/morl-container/morl-container').then(m=>m.MorlContainerComponent)
+      },
+      {
         path: '',
         redirectTo: '/',
         pathMatch: 'full',
