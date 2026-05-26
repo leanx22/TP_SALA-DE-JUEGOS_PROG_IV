@@ -46,6 +46,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/about-page/about-page').then((m) => m.AboutPage),
   },
   {
+    path: 'chat',
+    loadComponent: () => import('./pages/chat/chat-page/chat-page').then((m) => m.ChatPage),
+    canActivate: [authGuard]
+  },
+  {
     path:'games',
     loadComponent: ()=>import('./pages/games/game-layout/game-layout').then(m=>m.GameLayout),
     canActivate:[authGuard],

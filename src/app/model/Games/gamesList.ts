@@ -18,7 +18,7 @@ export const GameList: GameInfo[] = [
     name: 'Mayor o menor',
     description: 'Descubrí el número secreto.',
     image: 'assets/Games/heroImages/mom_low.jpg',
-    url: '/games/morl',
+    url: '/games/greater-or-less',
     needLogin: true,
   },
   {
