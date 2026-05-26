@@ -29,10 +29,10 @@ export const GameList: GameInfo[] = [
     needLogin: true,
   },
   {
-    name: 'Ruletita',
-    description: 'Una ruleta rusa diferente.',
-    image: 'assets/Games/heroImages/Ruletita_low.jpg',
-    url: '/games/roulette',
+    name: '7Dice',
+    description: 'Apostá todo.',
+    image: 'assets/Games/heroImages/dice.png',
+    url: '/games/dice',
     needLogin: true,
   },
 ];
