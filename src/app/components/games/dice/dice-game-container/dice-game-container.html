@@ -1,0 +1,44 @@
+<div class="dice-container container py-5 d-flex flex-column align-items-center">
+  <h2 class="title mb-4">7 Dice</h2>
+  
+  <div class="status-message mb-5 px-4 py-2 rounded-pill text-center border">
+    {{ message }}
+  </div>
+
+  <div class="board w-100 d-flex flex-column align-items-center">
+    @if (!gameService.isGameOver() || gameService.getScore() === 0) {
+      <div class="dice-area d-flex gap-4 mb-5">
+        <div class="dice-box shadow">{{ gameService.getDice1() }}</div>
+        <div class="dice-box shadow">{{ gameService.getDice2() }}</div>
+      </div>
+    }
+
+    <div class="stats-card d-flex gap-5 mb-5 shadow">
+      <div class="text-center">
+        <div class="stat-label mb-1">Pozo actual</div>
+        <div class="stat-value pot">{{ gameService.getCurrentPot() }}</div>
+      </div>
+      <div class="text-center">
+        <div class="stat-label mb-1">Puntuación final</div>
+        <div class="stat-value score">{{ gameService.getScore() }}</div>
+      </div>
+    </div>
+  </div>
+
+  @if (!gameService.isGameOver()) {
+    <div class="actions d-flex gap-3">
+      <button class="btn btn-custom-roll btn-lg px-4" (click)="onRoll()">
+        Lanzar dados
+      </button>
+      <button class="btn btn-custom-bank btn-lg px-4" (click)="onBank()" [disabled]="gameService.getCurrentPot() === 0">
+        Plantarse
+      </button>
+    </div>
+  } @else {
+    <div class="game-over mt-2">
+      <button class="btn btn-custom-restart btn-lg px-5 shadow" (click)="iniciarJuego()">
+        Volver a jugar
+      </button>
+    </div>
+  }
+</div>

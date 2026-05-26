@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { TriviaService } from '../../../../services/games/trivia/trivia-service';
 import { FsSpinner } from "../../../shared/fs-spinner/fs-spinner";
+import { TriviaPersistenceService } from '../../../../services/games/trivia/trivia-persistance-service';
 
 @Component({
   selector: 'app-trivia-container-component',
@@ -10,11 +11,12 @@ import { FsSpinner } from "../../../shared/fs-spinner/fs-spinner";
 })
 export class TriviaContainerComponent {
   protected triviaService = inject(TriviaService);
+  private triviaPersistance = inject(TriviaPersistenceService);
 
   currentIndex = signal<number>(0);
   score = signal<number>(0);
   isGameOver = signal<boolean>(false);
-
+  incorrectAnswersCount = signal<number>(0);
   selectedAnswer = signal<string | null>(null);
 
   currentQuestion = computed(() => {
@@ -30,6 +32,7 @@ export class TriviaContainerComponent {
     //reset
     this.currentIndex.set(0);
     this.score.set(0);
+    this.incorrectAnswersCount.set(0);
     this.isGameOver.set(false);
     this.selectedAnswer.set(null);
 
@@ -46,6 +49,8 @@ export class TriviaContainerComponent {
 
     if (isCorrect) {
       this.score.update((s) => s + 10);
+    }else{
+      this.incorrectAnswersCount.update((i) => i + 1);
     }
 
     // Espera para feedback
@@ -56,6 +61,7 @@ export class TriviaContainerComponent {
         this.currentIndex.update((i) => i + 1);
         this.selectedAnswer.set(null);
       } else {
+        this.triviaPersistance.saveMatchResult((this.score() / 10), this.incorrectAnswersCount());
         this.isGameOver.set(true);
       }
     }, 1500);

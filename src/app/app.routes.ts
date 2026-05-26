@@ -69,6 +69,10 @@ export const routes: Routes = [
         loadComponent:()=>import('./components/games/trivia/trivia-container-component/trivia-container-component').then(m=>m.TriviaContainerComponent)
       },
       {
+        path:'dice',
+        loadComponent:()=>import('./components/games/dice/dice-game-container/dice-game-container').then(m=>m.DiceGameContainer)
+      },
+      {
         path: '',
         redirectTo: '/',
         pathMatch: 'full',

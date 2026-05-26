@@ -1,0 +1,322 @@
+.rr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: calc(100vh - 100px);
+  padding: 2rem;
+  background-color: var(--body-bg);
+  color: var(--body-color);
+  font-family: 'Space Grotesk', sans-serif;
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2.5rem;
+      color: var(--clr-danger-a0);
+      margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(180, 28, 43, 0.5);
+    }
+
+    .status-message {
+      min-height: 30px;
+      p {
+        font-size: 1.25rem;
+        color: var(--clr-primary-a0);
+        margin: 0;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .player-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+
+    &.active-turn {
+      opacity: 1;
+      .face {
+        box-shadow: 0 0 30px 5px currentColor;
+        transform: scale(1.1);
+      }
+    }
+
+    .player-label {
+      font-size: 1.25rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    // Colors matching face variables for glow
+    &:first-child .face { color: var(--clr-primary-a0); }
+    &:last-child .face { color: var(--clr-info-a0); }
+  }
+
+  .face {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &.player-face {
+      background-color: var(--clr-primary-a0);
+    }
+
+    &.ai-face {
+      background-color: var(--clr-info-a0);
+    }
+
+    .eye {
+      width: 12px;
+      height: 12px;
+      background: var(--body-bg-dark);
+      border-radius: 50%;
+      position: absolute;
+      top: 30px;
+      
+      &.left { left: 25px; }
+      &.right { right: 25px; }
+    }
+    
+    .mouth {
+      width: 50px;
+      height: 25px;
+      border: 4px solid var(--body-bg-dark);
+      border-top: none;
+      border-radius: 0 0 25px 25px;
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+    }
+    
+    &.dead {
+      background-color: var(--clr-danger-a0) !important;
+      box-shadow: none !important;
+      transform: scale(0.95);
+      color: var(--clr-danger-a0);
+
+      .eye {
+         background: transparent;
+         width: 18px;
+         height: 18px;
+         top: 27px;
+         &.left { left: 22px; }
+         &.right { right: 22px; }
+
+         &::before, &::after {
+           content: '';
+           position: absolute;
+           width: 18px;
+           height: 4px;
+           background: var(--body-bg-dark);
+           top: 7px;
+         }
+         &::before { transform: rotate(45deg); }
+         &::after { transform: rotate(-45deg); }
+      }
+      .mouth {
+         border: none;
+         border-bottom: 4px solid var(--body-bg-dark);
+         border-radius: 0;
+         bottom: 30px;
+         height: 0;
+      }
+    }
+  }
+
+  .center-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 150px;
+  }
+
+  .gun-wrapper {
+    position: relative;
+    width: 120px;
+    height: 80px;
+  }
+
+  .gun {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+
+    .barrel {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 80px;
+      height: 18px;
+      background: var(--clr-neutral-a20);
+      border-radius: 4px;
+      border: 2px solid var(--clr-neutral-a40);
+    }
+    
+    .cylinder {
+      position: absolute;
+      top: 10px;
+      left: 65px;
+      width: 38px;
+      height: 38px;
+      background: var(--clr-neutral-a40);
+      border-radius: 50%;
+      border: 2px solid var(--clr-neutral-a50);
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--clr-neutral-a50);
+      }
+    }
+    
+    .grip {
+      position: absolute;
+      top: 35px;
+      left: 80px;
+      width: 25px;
+      height: 45px;
+      background: #5c3a21;
+      transform: rotate(15deg);
+      border-radius: 4px;
+      border: 2px solid #3d2412;
+    }
+
+    &.pointing-left {
+      transform: scaleX(1) rotate(0deg); // barrel at left, points to player
+    }
+    &.pointing-right {
+      transform: scaleX(-1) rotate(0deg); // barrel flipped, points to AI
+    }
+    &.pointing-up {
+      transform: rotate(90deg); // Neutral position
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 1.5rem;
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+      border: 2px solid transparent;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+
+      &.btn-enemy {
+        color: var(--clr-danger-a0);
+        border-color: var(--clr-danger-a0);
+        
+        &:hover:not(:disabled) {
+          background: rgba(180, 28, 43, 0.1);
+          box-shadow: 0 0 15px rgba(180, 28, 43, 0.3);
+        }
+      }
+
+      &.btn-self {
+        color: var(--clr-warning-a0);
+        border-color: var(--clr-warning-a0);
+        
+        &:hover:not(:disabled) {
+          background: rgba(240, 173, 78, 0.1);
+          box-shadow: 0 0 15px rgba(240, 173, 78, 0.3);
+        }
+      }
+
+      &:disabled {
+        border-color: var(--clr-neutral-a30);
+        color: var(--clr-neutral-a30);
+        cursor: not-allowed;
+      }
+
+      &:active:not(:disabled) {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .game-over {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    animation: fadeIn 0.5s ease-out;
+
+    h3 {
+      font-size: 2.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      margin: 0;
+      
+      &.win {
+        color: var(--clr-primary-a0);
+        text-shadow: 0 0 10px rgba(78, 255, 187, 0.5);
+      }
+      &.lose {
+        color: var(--clr-danger-a0);
+        text-shadow: 0 0 10px rgba(180, 28, 43, 0.5);
+      }
+    }
+
+    .btn-restart {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+      color: var(--body-bg);
+      background: var(--clr-primary-a0);
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+
+      &:hover {
+        background: var(--clr-primary-a10);
+        box-shadow: 0 0 20px rgba(78, 255, 187, 0.4);
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

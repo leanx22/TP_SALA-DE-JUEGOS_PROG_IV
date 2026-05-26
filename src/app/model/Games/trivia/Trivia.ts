@@ -13,3 +13,13 @@ export interface TriviaResponse{
     results: TriviaQuestion[];
 }
 
+export interface TriviaMatchCreationPayload{
+    user_id: string,
+    correct_answers: number,
+    incorrect_answers: number
+}
+
+export interface TriviaMatch extends TriviaMatchCreationPayload{
+    id: number,
+    created_at: string
+}
