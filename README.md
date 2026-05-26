@@ -4,15 +4,12 @@
 
 'Sala de juegos' es una aplicación web desarrollada como trabajo práctico para la materia Programación IV.
 
-El proyecto consiste en una sala de juegos desarrollada con Angular, donde los usuarios pueden registrarse, iniciar sesión y acceder a distintos juegos. El juego personalizado está inspirado en la mecánica de la ruleta rusa, incorporando decisiones estratégicas, administración de riesgo y sistema de turnos.
+El proyecto consiste en una sala de juegos desarrollada con Angular, donde los usuarios pueden registrarse, iniciar sesión y acceder a distintos juegos.
 
 ## Juego personalizado
 
-El juego personalizado, planea ser un spin-off inspirado en la ruleta rusa clásica.
-
-El jugador se enfrenta a una inteligencia artificial utilizando un arma con balas reales y balas vacías distribuidas aleatoriamente. En cada turno podrá tomar decisiones estratégicas para intentar sobrevivir y derrotar a su oponente.
-
-La propuesta busca combinar azar y estrategia mediante una mecánica simple e intuitiva.
+El juego personalizado, planea ser un juego de azar con dados. El usuario irá sumando puntos,
+pero si la suma de los dados da 7 pierde todo lo acumulado.
 
 ## Tecnologías utilizadas
 
@@ -30,54 +27,16 @@ La propuesta busca combinar azar y estrategia mediante una mecánica simple e in
   - Base de datos
   - Persistencia de usuarios
 
-### Deploy
-
-- Vercel
-
-## Funcionalidades implementadas - Sprint 1
-
-### Estructura inicial del proyecto
-
-- Creación y configuración del proyecto Angular.
-- Organización base de componentes principales y sus rutas.
-- Configuración de estilos globales.
-
-### Navegación
-
-- Implementación de navegación libre entre componentes utilizando Angular Router.
-
-### Componentes desarrollados
-
-- Home / Bienvenida
-- Login
-- Registro
-- Quién Soy
-
-### Página "Quién Soy"
-
-- Obtención de datos desde la API pública de GitHub.
-- Visualización de:
-  - Nombre de usuario
-  - Imagen de perfil
-  - Información del desarrollador
-- Explicación del juego personalizado y sus reglas básicas.
-
-### Diseño y experiencia de usuario
-
-- Integración de NgBootstrap para componentes visuales.
-- Diseño uniforme entre pantallas.
-- Implementación de favicon personalizado.
 
 ### Deploy
 
 - Publicación de la aplicación en Vercel.
 
-## Funcionalidades implementadas - Sprint 3
+## Funcionalidades implementadas - Sprint 4
 
 ### Funcionalidades implementadas
-- Juego del ahorcado.
-- Juego de mayor o menor.
-- Chat general entre usuarios registrados.
+- Juego de preguntados.
+- Juego propio "7Dice".
 
 ## Instalación y ejecución local
 
