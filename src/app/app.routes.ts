@@ -51,6 +51,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'results',
+    loadComponent: () => import('./pages/results-page/results-page').then((m) => m.ResultsPage),
+    canActivate: [authGuard]
+  },
+  {
     path:'games',
     loadComponent: ()=>import('./pages/games/game-layout/game-layout').then(m=>m.GameLayout),
     canActivate:[authGuard],
@@ -63,6 +68,14 @@ export const routes: Routes = [
       {
         path:'greater-or-less',
         loadComponent:()=>import('./components/games/more-or-less/morl-container/morl-container').then(m=>m.MorlContainerComponent)
+      },
+      {
+        path:'trivia',
+        loadComponent:()=>import('./components/games/trivia/trivia-container-component/trivia-container-component').then(m=>m.TriviaContainerComponent)
+      },
+      {
+        path:'dice',
+        loadComponent:()=>import('./components/games/dice/dice-game-container/dice-game-container').then(m=>m.DiceGameContainer)
       },
       {
         path: '',

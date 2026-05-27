@@ -1,0 +1,66 @@
+<div class="rr-container">
+  <div class="header">
+    <h2>Ruleta Rusa vs IA</h2>
+    <div class="status-message">
+      <p>{{ message }}</p>
+    </div>
+  </div>
+
+  <div class="board">
+    <!-- JUGADOR -->
+    <div class="player-area" [class.active-turn]="gameService.currentTurn() === 'player' && !gameService.currentWinner()">
+      <div class="face player-face" [class.dead]="gameService.currentWinner() === 'ai'">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="player-label">Tú</div>
+    </div>
+
+    <!-- CENTRO: PISTOLA -->
+    <div class="center-area">
+      <div class="gun-wrapper">
+        <div class="gun" 
+             [class.pointing-left]="gunPointing === 'left'" 
+             [class.pointing-right]="gunPointing === 'right'"
+             [class.pointing-up]="gunPointing !== 'left' && gunPointing !== 'right'">
+          <div class="barrel"></div>
+          <div class="cylinder"></div>
+          <div class="grip"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÁQUINA (IA) -->
+    <div class="player-area" [class.active-turn]="gameService.currentTurn() === 'ai' && !gameService.currentWinner()">
+      <div class="face ai-face" [class.dead]="gameService.currentWinner() === 'player'">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="mouth"></div>
+      </div>
+      <div class="player-label">Máquina</div>
+    </div>
+  </div>
+
+  <!-- CONTROLES DEL JUGADOR -->
+  <div class="actions" *ngIf="!gameService.currentWinner()">
+    <button 
+      class="btn btn-enemy"
+      (click)="onShootEnemy()" 
+      [disabled]="isShooting || gameService.currentTurn() !== 'player' || gameService.isForcedSelf()">
+      Disparar a Máquina
+    </button>
+    <button 
+      class="btn btn-self"
+      (click)="onShootSelf()"
+      [disabled]="isShooting || gameService.currentTurn() !== 'player'">
+      Disparar a Mí Mismo
+    </button>
+  </div>
+
+  <div class="game-over" *ngIf="gameService.currentWinner()">
+    <h3 *ngIf="gameService.currentWinner() === 'player'" class="win">¡Has Sobrevivido!</h3>
+    <h3 *ngIf="gameService.currentWinner() === 'ai'" class="lose">Has Muerto</h3>
+    <button class="btn btn-restart" (click)="iniciarJuego()">Jugar de Nuevo</button>
+  </div>
+</div>

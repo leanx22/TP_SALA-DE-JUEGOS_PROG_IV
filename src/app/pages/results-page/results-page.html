@@ -1,0 +1,150 @@
+<div class="results-container container py-5">
+  <h1 class="text-center mb-5 text-white fw-bold">Resultados</h1>
+
+  @if (isLoading()) {
+    <app-fs-spinner/>
+  } @else {
+    <div class="row g-4">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
+          <div class="card-body">
+            <h3 class="card-title text-primary fw-bold mb-4">Ahorcado</h3>
+            @if (hangmanResults().length === 0) {
+              <p class="text-white-50">Aún no hay partidas jugadas.</p>
+            } @else {
+              <div class="table-responsive">
+                <table class="table table-dark table-hover table-borderless align-middle rounded-3 overflow-hidden">
+                  <thead class="bg-primary text-white">
+                    <tr>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Correctas</th>
+                      <th scope="col">Incorrectas</th>
+                      <th scope="col">Tiempo (s)</th>
+                      <th scope="col">Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (result of hangmanResults(); track result.id) {
+                      <tr>
+                        <td>
+                          <span class="badge" [ngClass]="result.win ? 'bg-success' : 'bg-danger'">
+                            {{ result.win ? 'Ganado' : 'Perdido' }}
+                          </span>
+                        </td>
+                        <td>{{ result.correct_letters_count }}</td>
+                        <td>{{ result.incorrect_letters_count }}</td>
+                        <td>{{ (result.game_time / 1000) | number:'1.0-0' }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
+          <div class="card-body">
+            <h3 class="card-title text-primary fw-bold mb-4">Preguntados</h3>
+            @if (triviaResults().length === 0) {
+              <p class="text-white-50">Aún no hay partidas jugadas.</p>
+            } @else {
+              <div class="table-responsive">
+                <table class="table table-dark table-hover table-borderless align-middle rounded-3 overflow-hidden">
+                  <thead class="bg-primary text-white">
+                    <tr>
+                      <th scope="col">Correctas</th>
+                      <th scope="col">Incorrectas</th>
+                      <th scope="col">Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (result of triviaResults(); track result.id) {
+                      <tr>
+                        <td class="text-success fw-bold">{{ result.correct_answers }}</td>
+                        <td class="text-danger fw-bold">{{ result.incorrect_answers }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
+          <div class="card-body">
+            <h3 class="card-title text-primary fw-bold mb-4">Mayor o Menor</h3>
+            @if (morlResults().length === 0) {
+              <p class="text-white-50">Aún no hay partidas jugadas.</p>
+            } @else {
+              <div class="table-responsive">
+                <table class="table table-dark table-hover table-borderless align-middle rounded-3 overflow-hidden">
+                  <thead class="bg-primary text-white">
+                    <tr>
+                      <th scope="col">Puntaje</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (result of morlResults(); track result.id) {
+                      <tr>
+                        <td class="fw-bold fs-5 text-warning">{{ result.points }}</td>
+                        <td>
+                          <span class="badge" [ngClass]="result.win ? 'bg-success' : 'bg-secondary'">
+                            {{ result.win ? 'Ganado' : 'Terminado' }}
+                          </span>
+                        </td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
+          <div class="card-body">
+            <h3 class="card-title text-primary fw-bold mb-4">Dados</h3>
+            @if (diceResults().length === 0) {
+              <p class="text-white-50">Aún no hay partidas jugadas.</p>
+            } @else {
+              <div class="table-responsive">
+                <table class="table table-dark table-hover table-borderless align-middle rounded-3 overflow-hidden">
+                  <thead class="bg-primary text-white">
+                    <tr>
+                      <th scope="col">Puntaje Total</th>
+                      <th scope="col">Tiempo (s)</th>
+                      <th scope="col">Fecha</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (result of diceResults(); track result.id) {
+                      <tr>
+                        <td class="fw-bold fs-5 text-warning">{{ result.total_points }}</td>
+                        <td>{{ (result.game_time / 1000) | number:'1.0-0' }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+    </div>
+  }
+</div>
