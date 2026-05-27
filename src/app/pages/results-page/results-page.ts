@@ -10,11 +10,12 @@ import { TriviaMatch } from '../../model/Games/trivia/Trivia';
 import { MorLGamesStats } from '../../model/Games/moreOrLess/MorlGamestats';
 import { DiceGameMatch } from '../../model/Games/Dice/dice';
 import { FsSpinner } from "../../components/shared/fs-spinner/fs-spinner";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-results-page',
   standalone: true,
-  imports: [CommonModule, FsSpinner],
+  imports: [CommonModule, FsSpinner, DatePipe],
   templateUrl: './results-page.html',
   styleUrls: ['./results-page.scss'],
 })

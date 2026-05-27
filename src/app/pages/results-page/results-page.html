@@ -5,7 +5,6 @@
     <app-fs-spinner/>
   } @else {
     <div class="row g-4">
-      <!-- Hangman Results -->
       <div class="col-12 col-lg-6">
         <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
           <div class="card-body">
@@ -35,7 +34,7 @@
                         <td>{{ result.correct_letters_count }}</td>
                         <td>{{ result.incorrect_letters_count }}</td>
                         <td>{{ (result.game_time / 1000) | number:'1.0-0' }}</td>
-                        <td class="text-white-50 small">{{ result.created_at | date:'short' }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
                       </tr>
                     }
                   </tbody>
@@ -46,7 +45,6 @@
         </div>
       </div>
 
-      <!-- Trivia Results -->
       <div class="col-12 col-lg-6">
         <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
           <div class="card-body">
@@ -68,7 +66,7 @@
                       <tr>
                         <td class="text-success fw-bold">{{ result.correct_answers }}</td>
                         <td class="text-danger fw-bold">{{ result.incorrect_answers }}</td>
-                        <td class="text-white-50 small">{{ result.created_at | date:'short' }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
                       </tr>
                     }
                   </tbody>
@@ -79,7 +77,6 @@
         </div>
       </div>
 
-      <!-- More or Less Results -->
       <div class="col-12 col-lg-6">
         <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
           <div class="card-body">
@@ -105,7 +102,7 @@
                             {{ result.win ? 'Ganado' : 'Terminado' }}
                           </span>
                         </td>
-                        <td class="text-white-50 small">{{ result.created_at | date:'short' }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
                       </tr>
                     }
                   </tbody>
@@ -116,7 +113,6 @@
         </div>
       </div>
 
-      <!-- Dice Results -->
       <div class="col-12 col-lg-6">
         <div class="card h-100 bg-glass shadow-lg border-0 rounded-4">
           <div class="card-body">
@@ -138,7 +134,7 @@
                       <tr>
                         <td class="fw-bold fs-5 text-warning">{{ result.total_points }}</td>
                         <td>{{ (result.game_time / 1000) | number:'1.0-0' }}</td>
-                        <td class="text-white-50 small">{{ result.created_at | date:'short' }}</td>
+                        <td class="text-white-50 small">{{ result.created_at | date:'dd/MM/yyyy HH:mm':'-0300' }}</td>
                       </tr>
                     }
                   </tbody>
